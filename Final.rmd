@@ -80,6 +80,14 @@ rowPerc(table2)
 colPerc(table2)
 ```
 
+### Inferential Results
+
+```{r}
+chisq.test(table2)
+chisqtestGC(table2)
+fisher.test(table2)
+```
+
 ## LGBTQ
 
 
