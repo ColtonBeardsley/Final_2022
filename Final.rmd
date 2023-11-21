@@ -64,6 +64,12 @@ The p-value for males is 0.0000000000001098, indicating its exceptionally small 
 
 ## Females
 
+### Graphical Descriptive Results
+
+```{r}
+barchartGC(~infected + treatment,data=female)
+barchartGC(~infected + treatment,data=female, type="percent")
+```
 
 ## LGBTQ
 
