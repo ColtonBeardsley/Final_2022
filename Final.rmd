@@ -71,6 +71,15 @@ barchartGC(~infected + treatment,data=female)
 barchartGC(~infected + treatment,data=female, type="percent")
 ```
 
+
+### Numerical Descriptive Results
+
+```{r}
+table2 <- xtabs(~infected + treatment, data=female)
+rowPerc(table2)
+colPerc(table2)
+```
+
 ## LGBTQ
 
 
