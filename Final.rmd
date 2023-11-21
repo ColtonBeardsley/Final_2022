@@ -60,6 +60,7 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
+The p-value for males is 0.0000000000001098, indicating its exceptionally small value, leading to the failure to reject the null hypothesis. Consequently, the vaccine appears ineffective in preventing Covid-19 among males. The Fisher's Exact test yielded a p-value of 0.00000000000004631, signifying a significant difference in the occurrence of Covid-19 based on gender. For males, the likelihood of contracting Covid-19 remains unchanged whether they receive the placebo or the vaccine.
 
 ## Females
 
