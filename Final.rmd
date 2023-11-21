@@ -23,6 +23,7 @@ male = filter(FinalData, sex =="M")
 female = filter(FinalData, sex =="F")
 lgbtq = filter(FinalData, LGBTQ =="gay")
 drugUser = filter(FinalData, DrugUser =="yes")
+
 ```
 
 # Introduction
@@ -32,9 +33,8 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 ## Males
 
 ```{r}
-barchartGC(~class + Sex,data=ucdavis1)
-barchartGC(~class + Sex,data=ucdavis1, type="percent")
-
+barchartGC(~infected+treatment,data=male)
+barchartGC(~infected+treatment,data=male,type="percent")
 ```
 
 ## Females
