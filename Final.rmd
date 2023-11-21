@@ -34,10 +34,13 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 
 
 ### Graphical Descriptive Results
+
 ```{r}
 barchartGC(~infected+treatment,data=male)
 barchartGC(~infected+treatment,data=male,type="percent")
 ```
+
+The graph indicates a distinction of 30% between individuals with Covid-19 and those with a placebo among the males who received the vaccination and those who contracted Covid-19. In contrast, minimal disparity was observed among those who received the vaccinations and were deemed "OK."
 
 ### Numerical Descriptive Results
 
