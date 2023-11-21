@@ -90,6 +90,13 @@ fisher.test(table2)
 
 ## LGBTQ
 
+### Graphical Descriptive Results
+
+```{r}
+barchartGC(~infected + treatment,data=lgbtq)
+barchartGC(~infected + treatment,data=lgbtq, type="percent")
+```
+
 
 
 ## Druggies
