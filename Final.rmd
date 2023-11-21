@@ -52,6 +52,14 @@ colPerc(table1)
 
 The set of data illustrates a twofold difference in individuals who received the vaccinations and encountered Covid-19. Among those who took the placebo, 70% remained disease-free, in contrast to 30% of those who received the vaccination. However, there was no significant contrast among those who received vaccinations and were deemed "OK."
 
+### Inferential Results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
 
 ## Females
 
