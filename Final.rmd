@@ -30,8 +30,11 @@ drugUser = filter(FinalData, DrugUser =="yes")
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
-## Males
+$H_0$ : There are no statistically significant difference in the data, meaning the vaccine and placebo are equally as effective.
 
+$H_A$ : There are statistically significant difference in the data, meaning the vaccine and placebo are not equally as effective.
+
+## Males
 
 ### Graphical Descriptive Results
 
@@ -40,17 +43,19 @@ barchartGC(~infected+treatment,data=male)
 barchartGC(~infected+treatment,data=male,type="percent")
 ```
 
-The graph indicates a distinction of 30% between individuals with Covid-19 and those with a placebo among the males who received the vaccination and those who contracted Covid-19. In contrast, minimal disparity was observed among those who received the vaccinations and were deemed "OK."
+The bar chart above shows the graphical outcomes for males, based on the collected data. It compares the rates of contracting Covid-19 as compared to vaccination status. The left shows people who contracted Covid-19 and the right shows men who have not.
+
+This clearly shows that more than twice the percentage of people who are in the placebo group contracted Covid where people who did not contract Covid are very closely related.
 
 ### Numerical Descriptive Results
 
 ```{r}
-table1 <- xtabs(~infected + treatment, data= male)
+table1 <- xtabs(~infected + treatment, data = male)
 rowPerc(table1)
 colPerc(table1)
 ```
 
-The set of data illustrates a twofold difference in individuals who received the vaccinations and encountered Covid-19. Among those who took the placebo, 70% remained disease-free, in contrast to 30% of those who received the vaccination. However, there was no significant contrast among those who received vaccinations and were deemed "OK."
+The set of data illustrates a twofold difference in individuals who received the vaccinations and encountered Covid-19. The placebo group contracted Covid approximately 70% of the time where the vaccinated group contracted Covid 30% of the time. However, there was no significant contrast among those who received vaccinations and were deemed "OK." We can see that the vaccine is generally effective in this testing scenario.
 
 ### Inferential Results
 
@@ -60,7 +65,8 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-The p-value for males is 0.0000000000001098, indicating its exceptionally small value, leading to the failure to reject the null hypothesis. Consequently, the vaccine appears ineffective in preventing Covid-19 among males. The Fisher's Exact test yielded a p-value of 0.00000000000004631, signifying a significant difference in the occurrence of Covid-19 based on gender. For males, the likelihood of contracting Covid-19 remains unchanged whether they receive the placebo or the vaccine.
+
+The Chi Squared test shows that the p-value for males is 0.0000000000001098. This is substantially smaller than the general use point of 0.05. Consequently, the very small number indicats that there is a difference in the data. The Fisher's Exact test yielded a p-value of 0.00000000000004631, signifying a significant difference in the occurrence of Covid-19 in the data. This all shows that the odds a unvaxinated man getting Covid are 2.2 times higher than a man with the vaccine contracting Covid.
 
 ## Females
 
@@ -71,6 +77,9 @@ barchartGC(~infected + treatment,data=female)
 barchartGC(~infected + treatment,data=female, type="percent")
 ```
 
+Presented above is a bar chart that illustrates the graphical outcomes exclusively for females, based on the collected data. The comparison focuses on the rates of contracting Covid-19 relative to vaccination status, with the left side representing women who contracted the virus and the right side depicting women who did not.
+
+It is evident that approximately one-third more of the individuals in the placebo group contracted Covid-19, while the percentage of those who did not contract the virus remains closely aligned.
 
 ### Numerical Descriptive Results
 
@@ -80,6 +89,8 @@ rowPerc(table2)
 colPerc(table2)
 ```
 
+The numerical findings reinforce the insights gleaned from the graphical results. In the placebo group, Covid was contracted approximately 60% of the time, while the vaccinated group experienced a 40% contraction rate. It is apparent that the vaccine demonstrates general effectiveness in this testing scenario, albeit with a lower efficacy compared to male participants.
+
 ### Inferential Results
 
 ```{r}
@@ -87,6 +98,10 @@ chisq.test(table2)
 chisqtestGC(table2)
 fisher.test(table2)
 ```
+
+The results of the Chi-Squared test reveal a P-value for the tested data that is below the commonly accepted threshold of 0.05; in fact, it is 0.0002732, a small value signifying a significant difference in the data. The Chi-Squared statistic is 13, surpassing our degrees of freedom of one in this dataset.
+
+Additionally, the odds of an unvaccinated woman contracting Covid are 1.5 times higher than those of a woman with the vaccine.
 
 ## LGBTQ
 
@@ -98,8 +113,20 @@ barchartGC(~infected + treatment,data=lgbtq, type="percent")
 ```
 
 
+### Numerical Results
+
+
+### Inferential Results
+
 
 ## Druggies
 
+### Graphical Descriptive Results
+
+### Numerical Results
+
+### Inferential Results
 
 # Overall Results and Conclusions
+
+
