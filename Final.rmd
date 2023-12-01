@@ -151,19 +151,21 @@ barchartGC(~infected + treatment,data=drugUser, type="percent")
 ### Graphical Descriptive Results
 
 ```{r}
+barchartGC(~infected + treatment,data=drugUser)
+barchartGC(~infected + treatment,data=drugUser, type="percent")
+```
+
+
+
+### Numerical Results
+
+```{r}
 tableDrug <- xtabs(~infected + treatment, data=drugUser)
 rowPerc(tableDrug)
 colPerc(tableDrug)
 ```
 
-### Numerical Results
-
-```{r}
-chisq.test(tableDrug)
-chisqtestGC(tableDrug)
-drugFisher <- fisher.test(tableDrug)
-drugFisher
-```
+The numerical findings complement the insights derived from the graphical representation. In the placebo group, COVID contraction occurred approximately 10% of the time, while the vaccinated group experienced Covid contraction 90% of the time. Contrary to expectations, the vaccine appears to be ineffective in this testing scenario and, in fact, demonstrates an inverse effectiveness, seemingly elevating the risk of Covid contraction in this group. The adverse effects observed in this group surpass even those experienced by the already negatively affected LGBTQ group.
 
 ### Inferential Results
 
@@ -174,6 +176,8 @@ drugFisher <- fisher.test(tableDrug)
 drugFisher
 ```
 
+The results of the Chi-Squared test reveal a highly significant finding, with a P value of $2.842\times10^{-9}$—considerably smaller than the commonly used threshold of 0.05. This small P value suggests a significant difference in the data. Additionally, the Chi-Squared statistic, standing at 35, surpasses the degrees of freedom (one) for this dataset. In this group, the likelihood of an unvaccinated individual contracting Covid is approximately 1 in 8.
+
 ### Confidence Interval
 
 ```{r}
@@ -183,6 +187,8 @@ drugLow=(drugFisher$conf.int[1]/(drugFisher$conf.int[1]+1))*100
 drugHigh=(drugFisher$conf.int[2]/(drugFisher$conf.int[2]+1))*100
 cat("\n","Condifence interval for Drug Users: ",drugLow," to ",drugHigh)
 ```
+
+The data shows that the confidence interval is 4-21%, which is far lower than 50%. This means we can say that  this is also not a very good vaccine.
 
 # Overall Results and Conclusions
 
