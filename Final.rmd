@@ -47,6 +47,7 @@ The bar chart above shows the graphical outcomes for males, based on the collect
 
 This clearly shows that more than twice the percentage of people who are in the placebo group contracted Covid where people who did not contract Covid are very closely related.
 
+
 ### Numerical Descriptive Results
 
 ```{r}
@@ -229,7 +230,7 @@ The data shows that the confidence interval is 4-21%, which is far lower than 50
 
 Upon examining all categories, the rejection of the Null Hypothesis is evident, albeit for diverse reasons. Certain groups demonstrated favorable outcomes where the vaccine proved effective, lowering the risk of contracting Covid. Conversely, other groups seemed to face an elevated risk upon receiving the vaccine.
 
-The exact cause for these disparities remains unclear from the data. Notably, heterosexual men and women seem to experience benefits from the vaccine, placing them in a lower-risk category. In contrast, the LGBTQ and Drug User populations exhibit notably adverse outcomes from the vaccine.
+The exact cause for these disparities remains unclear from the data. An important point in the data, heterosexual men and women seem to experience benefits from the vaccine, placing them in a lower-risk category. In contrast, the LGBTQ and Drug User populations exhibit notably adverse outcomes from the vaccine.
 
 ## Males
 
