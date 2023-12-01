@@ -140,13 +140,49 @@ The Chi Squared test shows that the p-value for the tested data is much smaller 
 
 ### Confidence Interval
 
-## Druggies
+## Drug Users
+
+```{r}
+barchartGC(~infected + treatment,data=drugUser)
+barchartGC(~infected + treatment,data=drugUser, type="percent")
+```
+
 
 ### Graphical Descriptive Results
 
+```{r}
+tableDrug <- xtabs(~infected + treatment, data=drugUser)
+rowPerc(tableDrug)
+colPerc(tableDrug)
+```
+
 ### Numerical Results
 
+```{r}
+chisq.test(tableDrug)
+chisqtestGC(tableDrug)
+drugFisher <- fisher.test(tableDrug)
+drugFisher
+```
+
 ### Inferential Results
+
+```{r}
+chisq.test(tableDrug)
+chisqtestGC(tableDrug)
+drugFisher <- fisher.test(tableDrug)
+drugFisher
+```
+
+### Confidence Interval
+
+```{r}
+oddsDrug = drugFisher$estimate/(drugFisher$estimate +1)*100
+print(oddsDrug)
+drugLow=(drugFisher$conf.int[1]/(drugFisher$conf.int[1]+1))*100
+drugHigh=(drugFisher$conf.int[2]/(drugFisher$conf.int[2]+1))*100
+cat("\n","Condifence interval for Drug Users: ",drugLow," to ",drugHigh)
+```
 
 # Overall Results and Conclusions
 
