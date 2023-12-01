@@ -50,9 +50,9 @@ This clearly shows that more than twice the percentage of people who are in the 
 ### Numerical Descriptive Results
 
 ```{r}
-table1 <- xtabs(~infected + treatment, data = male)
-rowPerc(table1)
-colPerc(table1)
+male <- xtabs(~infected + treatment, data = male)
+rowPerc(male)
+colPerc(male)
 ```
 
 The set of data illustrates a twofold difference in individuals who received the vaccinations and encountered Covid-19. The placebo group contracted Covid approximately 70% of the time where the vaccinated group contracted Covid 30% of the time. However, there was no significant contrast among those who received vaccinations and were deemed "OK." We can see that the vaccine is generally effective in this testing scenario.
@@ -60,15 +60,26 @@ The set of data illustrates a twofold difference in individuals who received the
 ### Inferential Results
 
 ```{r}
-chisq.test(table1)
-chisqtestGC(table1)
-fisher.test(table1)
+chisq.test(male)
+chisqtestGC(male)
+maleFisher <- fisher.test(male)
+maleFisher
 ```
 
 
 The Chi Squared test shows that the p-value for males is 0.0000000000001098. This is substantially smaller than the general use point of 0.05. Consequently, the very small number indicats that there is a difference in the data. The Fisher's Exact test yielded a p-value of 0.00000000000004631, signifying a significant difference in the occurrence of Covid-19 in the data. This all shows that the odds a unvaxinated man getting Covid are 2.2 times higher than a man with the vaccine contracting Covid.
 
 ### Confidence Interval
+
+```{r}
+oddsMale = maleFisher$estimate/(maleFisher$estimate+1)*100
+print(oddsMale)
+maleLow=(maleFisher$conf.int[1]/(maleFisher$conf.int[1]+1))*100
+maleHigh=(maleFisher$conf.int[2]/(maleFisher$conf.int[2]+1))*100
+cat("\n","Condifence interval for Males: ",maleLow," to ",maleHigh)
+```
+
+The confidence interval is >50% with a normal vaccine threshold of >60%. This confidence interval is more than adequate to show that this is a good vaccine for this group.
 
 ## Females
 
@@ -86,9 +97,9 @@ It is evident that approximately one-third more of the individuals in the placeb
 ### Numerical Descriptive Results
 
 ```{r}
-table2 <- xtabs(~infected + treatment, data=female)
-rowPerc(table2)
-colPerc(table2)
+female <- xtabs(~infected + treatment, data=female)
+rowPerc(female)
+colPerc(female)
 ```
 
 The numerical findings reinforce the insights gleaned from the graphical results. In the placebo group, Covid was contracted approximately 60% of the time, while the vaccinated group experienced a 40% contraction rate. It is apparent that the vaccine demonstrates general effectiveness in this testing scenario, albeit with a lower efficacy compared to male participants.
@@ -96,9 +107,10 @@ The numerical findings reinforce the insights gleaned from the graphical results
 ### Inferential Results
 
 ```{r}
-chisq.test(table2)
-chisqtestGC(table2)
-fisher.test(table2)
+chisq.test(female)
+chisqtestGC(female)
+femaleFisher <- fisher.test(female)
+femaleFisher
 ```
 
 The results of the Chi-Squared test reveal a P-value for the tested data that is below the commonly accepted threshold of 0.05; in fact, it is 0.0002732, a small value signifying a significant difference in the data. The Chi-Squared statistic is 13, surpassing our degrees of freedom of one in this dataset.
@@ -106,6 +118,16 @@ The results of the Chi-Squared test reveal a P-value for the tested data that is
 Additionally, the odds of an unvaccinated woman contracting Covid are 1.5 times higher than those of a woman with the vaccine.
 
 ### Confidence Interval
+
+```{r}
+oddsFemale = femaleFisher$estimate/(femaleFisher$estimate +1)*100
+print(oddsFemale)
+femaleLow=(femaleFisher$conf.int[1]/(femaleFisher$conf.int[1]+1))*100
+femaleHigh=(femaleFisher$conf.int[2]/(femaleFisher$conf.int[2]+1))*100
+cat("\n","Condifence interval for Females: ",femaleLow," to ",femaleHigh)
+```
+
+We see that the confidence interval is >50% and includes the 60% threshold, it is less effective here than in the male group but still a good vaccine.
 
 ## LGBTQ
 
@@ -116,6 +138,9 @@ barchartGC(~infected + treatment,data=lgbtq)
 barchartGC(~infected + treatment,data=lgbtq, type="percent")
 ```
 
+Displayed above is a bar chart illustrating the graphical outcomes exclusively for drug users derived from the dataset. The comparison involves the incidence of contracting Covid-19 based on vaccination status, with the left side depicting individuals who contracted Covid-19 and the right side representing those who did not.
+
+Once more, it is evident that a significantly higher number of individuals in the vaccinated group contracted Covid-19, while the non-contracted Covid-19 group shows a close correlation. Considering the sample size, the likelihood of this occurrence being solely due to chance is improbable.
 
 ### Numerical Results
 
@@ -139,6 +164,16 @@ lgbtqFisher
 The Chi Squared test shows that the p-value for the tested data is much smaller than the general use point of 0.05. In fact, it is 0.00000006668, which indicates that there is a difference in the data. The Chi-Squared statistic is also 29, being larger than our degrees of freedom of one from this data. The odds of an unvaxinated person contracting Covid in this group are about 1:5.
 
 ### Confidence Interval
+
+```{r}
+oddsLGBTQ = lgbtqFisher$estimate/(lgbtqFisher$estimate +1)*100
+print(oddsLGBTQ)
+lgbtqLow=(lgbtqFisher$conf.int[1]/(lgbtqFisher$conf.int[1]+1))*100
+lgbtqHigh=(lgbtqFisher$conf.int[2]/(lgbtqFisher$conf.int[2]+1))*100
+cat("\n","Condifence interval for LGBTQ: ",lgbtqLow," to ",lgbtqHigh)
+```
+
+The confidence interval is 7-26% far lower than 50%. We can say that this is not a very good vaccine.
 
 ## Drug Users
 
