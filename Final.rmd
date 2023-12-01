@@ -68,6 +68,8 @@ fisher.test(table1)
 
 The Chi Squared test shows that the p-value for males is 0.0000000000001098. This is substantially smaller than the general use point of 0.05. Consequently, the very small number indicats that there is a difference in the data. The Fisher's Exact test yielded a p-value of 0.00000000000004631, signifying a significant difference in the occurrence of Covid-19 in the data. This all shows that the odds a unvaxinated man getting Covid are 2.2 times higher than a man with the vaccine contracting Covid.
 
+### Confidence Interval
+
 ## Females
 
 ### Graphical Descriptive Results
@@ -103,6 +105,8 @@ The results of the Chi-Squared test reveal a P-value for the tested data that is
 
 Additionally, the odds of an unvaccinated woman contracting Covid are 1.5 times higher than those of a woman with the vaccine.
 
+### Confidence Interval
+
 ## LGBTQ
 
 ### Graphical Descriptive Results
@@ -115,9 +119,26 @@ barchartGC(~infected + treatment,data=lgbtq, type="percent")
 
 ### Numerical Results
 
+```{r}
+tableLGBTQ <- xtabs(~infected + treatment, data=lgbtq)
+rowPerc(tableLGBTQ)
+colPerc(tableLGBTQ)
+```
+
+The numerical results build on what the graphical results were showing. The placebo group contracted Covid approximately 60% of the time where the vaccinated group contracted Covid 40% of the time. We can see that the vaccine is generally effective in this testing scenario, although it is less effective then the male participants.
 
 ### Inferential Results
 
+```{r}
+chisq.test(tableLGBTQ)
+chisqtestGC(tableLGBTQ)
+lgbtqFisher <- fisher.test(tableLGBTQ)
+lgbtqFisher
+```
+
+The Chi Squared test shows that the p-value for the tested data is much smaller than the general use point of 0.05. In fact, it is 0.00000006668, which indicates that there is a difference in the data. The Chi-Squared statistic is also 29, being larger than our degrees of freedom of one from this data. The odds of an unvaxinated person contracting Covid in this group are about 1:5.
+
+### Confidence Interval
 
 ## Druggies
 
